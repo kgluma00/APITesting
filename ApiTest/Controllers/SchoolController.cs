@@ -24,6 +24,7 @@ namespace ApiTest.Controllers
         {
             _context.Schools.Add(model);
             _context.SaveChanges();
+
             return Ok();
         }
     }

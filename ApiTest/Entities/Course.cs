@@ -11,6 +11,5 @@ namespace ApiTest.Entities
         public string CourseName { get; set; }
         public ICollection<StudentCourse> StudentCourses { get; set; }
         public ICollection<SchoolCourse> SchoolCourses { get; set; }
-
     }
 }
