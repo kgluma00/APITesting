@@ -82,14 +82,14 @@ namespace ApiTest.Controllers
         public List<StudentDto> GetAllStudentsWhoAreParticipatingInTheSelectedCourse(int courseId)
         {
             var students = _context.StudentCourses.Where(i => i.CourseId == courseId).Include(i => i.Student).ToList();
-            var listaStudenata = new List<Student>();
+            var studentsList = new List<Student>();
 
             foreach (var item in students)
             {
-                listaStudenata.Add(item.Student);
+                studentsList.Add(item.Student);
             }
 
-            return _mapper.Map<List<Student>, List<StudentDto>>(listaStudenata);
+            return _mapper.Map<List<Student>, List<StudentDto>>(studentsList);
         }
 
        

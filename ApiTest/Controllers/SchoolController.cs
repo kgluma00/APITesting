@@ -19,6 +19,7 @@ namespace ApiTest.Controllers
     {
         private readonly AppContext _context;
         private readonly IMapper _mapper;
+
         public SchoolController(AppContext context, IMapper mapper)
         {
             _context = context;
