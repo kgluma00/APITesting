@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiTest.Controllers
 {
+
+    //POSTMAN URL: http://localhost:5500/api
+
     [Route("api/[controller]")]
     [ApiController]
     public class SchoolController : ControllerBase
