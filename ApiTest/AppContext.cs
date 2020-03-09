@@ -38,6 +38,24 @@ namespace ApiTest
                 .HasOne(bc => bc.Course)
                 .WithMany(c => c.SchoolCourses)
                 .HasForeignKey(bc => bc.CourseId);
+
+            modelBuilder.Entity<School>().HasData(
+                new School { Id = 1, SchoolName = "Fakultet elektrotehnike, strojarstva i brodogradnje" },
+                new School { Id = 2, SchoolName = "Fakultet građevinarstva, arhitekture i geodezije" }
+                );
+
+            modelBuilder.Entity<Course>().HasData(
+              new Course { Id = 1, CourseName = "Programiranje 1" },
+              new Course { Id = 2, CourseName = "Objektno-orijentirano programiranje" }
+              );
+
+            modelBuilder.Entity<Student>().HasData(
+              new Student { Id = 1, SchoolId = 1, StudentName = "Josip" },
+              new Student { Id = 2, SchoolId = 1, StudentName = "Kristijan" }
+              );
+
         }
+
+
     }
 }
