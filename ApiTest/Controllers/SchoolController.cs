@@ -7,6 +7,7 @@ using ApiTest.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiTest.Controllers
 {
@@ -40,7 +41,7 @@ namespace ApiTest.Controllers
         {
             var schools = _context.Schools.ToList();
 
-            return _mapper.Map<List<School>,List<SchoolDto>>(schools);
+            return _mapper.Map<List<School>, List<SchoolDto>>(schools);
         }
 
         [HttpGet]
@@ -49,7 +50,33 @@ namespace ApiTest.Controllers
         {
             var school = _context.Schools.Where(i => i.Id == schoolId).Single();
 
-            return Ok(_mapper.Map<School,SchoolDto>(school));
+            return Ok(_mapper.Map<School, SchoolDto>(school));
         }
+
+        [HttpPost]
+        [Route("{schoolId}/{courseId}")]
+        public IActionResult AddExistingCourseToExistingStudent(int schoolId, int courseId)
+        {
+            _context.SchoolCourses.Add(new SchoolCourse { SchoolId = schoolId, CourseId = courseId });
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("{schoolId}/school")]
+        public List<SchoolDto> GetAllCoursesWhichArePartOfTheSelectedSchool(int schoolId)
+        {
+            var schools = _context.SchoolCourses.Where(i => i.SchoolId == schoolId).Include(co => co.School).ToList();
+            var schoolList = new List<School>();
+
+            foreach (var item in schools)
+            {
+                schoolList.Add(item.School);
+            }
+
+            return _mapper.Map<List<School>, List<SchoolDto>>(schoolList);
+        }
+
     }
 }
