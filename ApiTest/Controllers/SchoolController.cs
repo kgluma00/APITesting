@@ -55,7 +55,7 @@ namespace ApiTest.Controllers
 
         [HttpPost]
         [Route("{schoolId}/{courseId}")]
-        public IActionResult AddExistingCourseToExistingStudent(int schoolId, int courseId)
+        public IActionResult AddExistingCourseToExistingSchool(int schoolId, int courseId)
         {
             _context.SchoolCourses.Add(new SchoolCourse { SchoolId = schoolId, CourseId = courseId });
             _context.SaveChanges();
