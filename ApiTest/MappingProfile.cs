@@ -16,7 +16,7 @@ namespace ApiTest
             CreateMap<Student, StudentDto>().ReverseMap();
             CreateMap<Course, CourseDto>().ReverseMap();
             
-            //komentar Gabriela 
+           
         }
     }
 }
